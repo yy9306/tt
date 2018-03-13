@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <title>Camera API</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <section class="main-content">
+
+                <p>
+                    <input type="file" id="take-picture" accept="image/*" capture="camera">
+                </p>
+
+                <h2>展示:</h2>
+                <p>
+                    <img src="about:blank" alt="" id="show-picture" width="200" height="100">
+                </p>
+            </section>
+        </div>
+
+
+        <script>
+          (function () {
+              var takePicture = document.querySelector("#take-picture"),
+                  showPicture = document.querySelector("#show-picture");
+
+              if (takePicture && showPicture) {
+                  takePicture.onchange = function (event) {
+                      var files = event.target.files,
+                          file;
+                      if (files && files.length > 0) {
+                          file = files[0];
+                          try {
+                              var URL = window.URL || window.webkitURL;
+                              var imgURL = URL.createObjectURL(file);
+                              showPicture.src = imgURL;
+                              showPicture.onload = function() {
+                                  URL.revokeObjectURL(imgURL);
+                              };
+                          }
+                          catch (e) {
+                              try {
+                                  var fileReader = new FileReader();
+                                  fileReader.onload = function (event) {
+                                      showPicture.src = event.target.result;
+                                  };
+                                  fileReader.readAsDataURL(file);
+                              }
+                              catch (e) {
+                                  var error = document.querySelector("#error");
+                                  if (error) {
+                                      error.innerHTML = "Neither createObjectURL or FileReader are supported";
+                                  }
+                              }
+                          }
+                      }
+                  };
+              }
+          })();
+        </script>
+    </body>
+</html>
