@@ -58,6 +58,6 @@ fileReader.readAsDataURL(file);
 
 ### 效果图
 
-![](./image/WechatIMG19.jepg)
+![](./image/WechatIMG19.jpg)
 
 > 完整代码请看index.html
