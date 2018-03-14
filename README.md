@@ -1,4 +1,4 @@
-#Camera API的使用
+# Camera API的使用
 
 通过[Camera API](https://wiki.mozilla.org/Platform/Features/Camera_API),你可以使用手机的摄像头拍照,然后把拍到的照片发送给当前网页.这些操作主要是通过一个input元素来实现的,其中该元素的type属性必须为"file",accept属性要允许图片格式,这样才能知道这个文件选择框是用来选择图片的.,完整的HTML结构看起来是这样的:
 
@@ -58,6 +58,6 @@ fileReader.readAsDataURL(file);
 
 ### 效果图
 
-![](./image/WechatIMG19.jpg)
+![](./image/WechatIMG19.png)
 
 > 完整代码请看index.html
